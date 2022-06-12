@@ -1,0 +1,58 @@
+### GET verifikasi email
+GET http://localhost:3000/api/emailvalidation
+X-API-Key: myfin
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email" : "pandudwisaputra0@gmail.com",
+  "otp" : "1993"
+}
+
+### CREATE akun nasabah
+POST http://localhost:3000/api/datanasabah
+X-API-Key: myfin
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email" : "pandudwisaputra0@gmail.com"
+}
+
+### UPDATE pin nasabah
+PUT http://localhost:3000/api/pinnasabah/20
+X-API-Key: myfin
+Accept: application/json
+Content-Type: application/json
+
+{
+  "pin" : "098578"
+}
+
+### UPDATE keamanan nasabah
+PUT http://localhost:3000/api/keamanannasabah/11
+X-API-Key: myfin
+Accept: application/json
+Content-Type: application/json
+
+{
+  "pertanyaan" : "Siapa nama gurumu?",
+  "jawaban" : "Sujiwo"
+}
+
+### UPDATE datanasabah by id
+PUT http://localhost:3000/api/datanasabah/1
+X-API-Key: myfin
+Accept: application/json
+Content-Type: application/json
+
+{
+  "nik" : "351911080621001",
+  "nama" : "Pandu",
+  "alamat" : "madiun",
+  "no_hp" : "081774888409",
+  "lahir" : "2001-24-08",
+  "kota" : "Geger",
+  "ktp" : "ktp.jpg",
+  "swa" : "swa.jpg"
+}
