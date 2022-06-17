@@ -9,6 +9,7 @@ import (
 	"log"
 	"myfin/entity/domain"
 	"myfin/entity/web"
+	"myfin/exception"
 	"myfin/helper"
 	"myfin/repository"
 )
@@ -85,4 +86,47 @@ func (service *AkunNasabahServiceImpl) CreateAkun(ctx context.Context, request w
 	akunnasabah = service.AkunNasabahRepository.CreateAkun(ctx, tx, akunnasabah)
 
 	return helper.ToAkunNasabahResponse(akunnasabah)
+}
+
+func (service *AkunNasabahServiceImpl) FindByEmail(ctx context.Context, request web.LoginNasabahRequest) web.LoginNasabahResponse {
+	err := service.Validate.Struct(request)
+	helper.PanicIfError(err)
+
+	tx, err := service.DB.Begin()
+	helper.PanicIfError(err)
+	defer helper.CommitOrRollback(tx)
+
+	//email := domain.LoginNasabah{Email: request.Email}
+
+	loginnasabah, err := service.AkunNasabahRepository.FindByEmail(ctx, tx, request.Email)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
+
+	loginnasabah.Email = request.Email
+	loginnasabah.Status = "Email Sudah Terdaftar"
+
+	return helper.ToLoginNasabahResponse(loginnasabah)
+}
+
+func (service *AkunNasabahServiceImpl) FindByNik(ctx context.Context, request web.CheckNikRequest) web.DataNasabahResponse {
+
+	err := service.Validate.Struct(request)
+	helper.PanicIfError(err)
+
+	tx, err := service.DB.Begin()
+	helper.PanicIfError(err)
+	defer helper.CommitOrRollback(tx)
+
+	//email := domain.LoginNasabah{Email: request.Email}
+
+	loginnasabah, err := service.AkunNasabahRepository.FindByNik(ctx, tx, request.Nik)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
+
+	loginnasabah.Nik = request.Nik
+	loginnasabah.Status = "Nik Sudah Terdaftar"
+
+	return helper.ToDataNasabahResponse(loginnasabah)
 }

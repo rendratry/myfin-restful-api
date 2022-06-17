@@ -39,6 +39,8 @@ func (service *PengajuanKreditServiceImpl) AjuanKredit(ctx context.Context, requ
 	pengajuankredit := domain.PengajuanKredit{
 		IdNasabah:        request.IdNasabah,
 		Penggunaan:       request.Penggunaan,
+		Pekerjaan:        request.Pekerjaan,
+		Gaji:             request.Gaji,
 		BesarPengajuan:   request.BesarPengajuan,
 		Tenor:            request.Tenor,
 		TanggalPengajuan: date,

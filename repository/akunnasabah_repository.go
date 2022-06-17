@@ -8,5 +8,6 @@ import (
 
 type AkunNasabahRepository interface {
 	CreateAkun(ctx context.Context, tx *sql.Tx, akunnasabah domain.AkunNasabah) domain.AkunNasabah
-	//FindByEmail(ctx context.Context, tx *sql.Tx, emailUser string) (domain.AkunNasabah, error)
+	FindByEmail(ctx context.Context, tx *sql.Tx, nasabah string) (domain.LoginNasabah, error)
+	FindByNik(ctx context.Context, tx *sql.Tx, nik string) (domain.DataNasabah, error)
 }

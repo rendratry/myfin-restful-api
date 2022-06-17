@@ -3,6 +3,7 @@ package repository
 import (
 	"context"
 	"database/sql"
+	"errors"
 	"myfin/entity/domain"
 	"myfin/helper"
 )
@@ -25,6 +26,38 @@ func (repository *AkunNasabahRepositoryImpl) CreateAkun(ctx context.Context, tx 
 	akunnasabah.IdUser = int(id)
 
 	return akunnasabah
+}
+
+func (repository *AkunNasabahRepositoryImpl) FindByEmail(ctx context.Context, tx *sql.Tx, nasabah string) (domain.LoginNasabah, error) {
+	script := "select email from tb_data_nasabah where email = ? limit 1"
+	rows, err := tx.QueryContext(ctx, script, nasabah)
+	emailnasabah := domain.LoginNasabah{}
+	helper.PanicIfError(err)
+	defer rows.Close()
+
+	if rows.Next() {
+		err := rows.Scan(&emailnasabah.Email)
+		helper.PanicIfError(err)
+		return emailnasabah, nil
+	} else {
+		return emailnasabah, errors.New("Email Belum Terdaftar")
+	}
+}
+
+func (repository *AkunNasabahRepositoryImpl) FindByNik(ctx context.Context, tx *sql.Tx, nik string) (domain.DataNasabah, error) {
+	script := "select nik from tb_data_nasabah where nik = ? limit 1"
+	rows, err := tx.QueryContext(ctx, script, nik)
+	niknasabah := domain.DataNasabah{}
+	helper.PanicIfError(err)
+	defer rows.Close()
+
+	if rows.Next() {
+		err := rows.Scan(&niknasabah.Nik)
+		helper.PanicIfError(err)
+		return niknasabah, nil
+	} else {
+		return niknasabah, errors.New("Nik Belum Terdaftar")
+	}
 }
 
 //func (repository *AkunNasabahRepositoryImpl) FindByEmail(ctx context.Context, tx *sql.Tx, emailUser string) (domain.AkunNasabah, error) {

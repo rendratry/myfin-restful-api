@@ -21,14 +21,16 @@ Content-Type: application/json
 
 
 ### CREATE pengajuan kredit
-POST http://192.168.80.47:3000/api/pengajuankredit
+POST http://localhost:3000/api/pengajuankredit
 X-API-Key: myfin
 Accept: application/json
 Content-Type: application/json
 
 {
-  "id" : 70,
+  "id" : 76,
   "penggunaan" : "Bayar sekolah",
+  "pekerjaan" : "PNS",
+  "gaji" : "5000000",
   "besar_pengajuan" : 10000000,
   "tenor" : "3 bulan",
   "score" : 100
@@ -141,4 +143,25 @@ Content-Type: application/json
 
 {
   "ava" : "ava.jpg"
+}
+
+### Email Check
+POST http://localhost:3000/api/emailcheck
+X-API-Key: myfin
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email" : "rendratry1@gmail.com"
+}
+
+
+### Nik Check
+POST http://localhost:3000/api/nikcheck
+X-API-Key: myfin
+Accept: application/json
+Content-Type: application/json
+
+{
+  "nik" : "3519110907000001"
 }
