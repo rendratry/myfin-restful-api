@@ -67,6 +67,8 @@ func ToPengajuanKreditResponse(pengajuankredit domain.PengajuanKredit) web.Penga
 		IdNasabah:       pengajuankredit.IdNasabah,
 		Penggunaan:      pengajuankredit.Penggunaan,
 		TanggalPengjuan: pengajuankredit.TanggalPengajuan,
+		Gaji:            pengajuankredit.Gaji,
+		GajiTambahan:    pengajuankredit.GajiTambahan,
 		BesarPengajuan:  pengajuankredit.BesarPengajuan,
 		Tenor:           pengajuankredit.Tenor,
 		Score:           pengajuankredit.Score,

@@ -21,6 +21,7 @@ func NewRouter(
 	pinnasabahController controller.PinNasabahController) *httprouter.Router {
 	router := httprouter.New()
 
+	router.POST("/api/keamanancheck/:datanasabahId", keamanannasabahController.FindById)
 	router.POST("/api/nikcheck", akunnasabahController.FindByNik)
 	router.POST("/api/emailcheck", akunnasabahController.FindByEmail)
 	router.PUT("/api/ava/:nasabahId", avaController.AvaUpload)

@@ -84,6 +84,8 @@ type PengajuanKreditResponse struct {
 	IdNasabah       int    `json:"id"`
 	Penggunaan      string `json:"penggunaan"`
 	BesarPengajuan  int    `json:"besar_pengajuan"`
+	Gaji            string `json:"gaji"`
+	GajiTambahan    string `json:"gaji_tambahan"`
 	Tenor           string `json:"tenor"`
 	Score           int    `json:"score"`
 	TanggalPengjuan string `json:"tanggal_pengjuan"`

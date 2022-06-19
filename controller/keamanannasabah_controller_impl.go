@@ -39,11 +39,16 @@ func (controller *KeamananNasabahControllerImpl) UpdateKeamanan(writer http.Resp
 }
 
 func (controller *KeamananNasabahControllerImpl) FindById(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
+	datanasabahCekKeamananRequest := web.DatanasabahUpdateKeamananRequest{}
+	helper.ReadFromRequestBody(request, &datanasabahCekKeamananRequest)
+
 	datanasabahId := params.ByName("datanasabahId")
 	id, err := strconv.Atoi(datanasabahId)
 	helper.PanicIfError(err)
 
-	keamananResponse := controller.KeamananNasabahService.FindById(request.Context(), id)
+	datanasabahCekKeamananRequest.Id_user = id
+
+	keamananResponse := controller.KeamananNasabahService.FindScurity(request.Context(), datanasabahCekKeamananRequest)
 	webResponse := web.WebResponse{
 		Code:   200,
 		Status: "OK",

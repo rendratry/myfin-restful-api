@@ -5,6 +5,7 @@ type PengajuanKredit struct {
 	Penggunaan       string
 	Pekerjaan        string
 	Gaji             string
+	GajiTambahan     string
 	BesarPengajuan   int
 	TanggalPengajuan string
 	Tenor            string

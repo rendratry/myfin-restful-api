@@ -41,6 +41,7 @@ func (service *PengajuanKreditServiceImpl) AjuanKredit(ctx context.Context, requ
 		Penggunaan:       request.Penggunaan,
 		Pekerjaan:        request.Pekerjaan,
 		Gaji:             request.Gaji,
+		GajiTambahan:     request.GajiTambahan,
 		BesarPengajuan:   request.BesarPengajuan,
 		Tenor:            request.Tenor,
 		TanggalPengajuan: date,

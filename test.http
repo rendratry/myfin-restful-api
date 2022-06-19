@@ -31,6 +31,7 @@ Content-Type: application/json
   "penggunaan" : "Bayar sekolah",
   "pekerjaan" : "PNS",
   "gaji" : "5000000",
+  "gaji_tambahan" : "3000000",
   "besar_pengajuan" : 10000000,
   "tenor" : "3 bulan",
   "score" : 100
@@ -79,14 +80,14 @@ Accept: application/json
 Content-Type: application/json
 
 ### GET login nasabah
-POST http://192.168.0.111:3000/api/login
+POST http://localhost:3000/api/login
 X-API-Key: myfin
 Accept: application/json
 Content-Type: application/json
 
 {
   "email" : "rendratrykusuma@gmail.com",
-  "pin" : "123456"
+  "pin" : "111111"
 }
 
 
@@ -102,15 +103,28 @@ Content-Type: application/json
 }
 
 ### UPDATE keamanan nasabah
-PUT http://localhost:3000/api/keamanannasabah/19
+PUT http://localhost:3000/api/keamanannasabah/76
 X-API-Key: myfin
 Accept: application/json
 Content-Type: application/json
 
 {
   "pertanyaan" : "Siapa nama gurumu?",
-  "jawaban" : "Sujiwo"
+  "jawaban" : "Subandi"
 }
+
+
+### CHECK keamanan nasabah
+POST http://localhost:3000/api/keamanancheck/76
+X-API-Key: myfin
+Accept: application/json
+Content-Type: application/json
+
+{
+  "pertanyaan" : "Siapa nama gurumu?",
+  "jawaban" : "Subandi"
+}
+
 
 ### UPDATE datanasabah by id
 PUT http://192.168.162.47:3000/api/datanasabah/67

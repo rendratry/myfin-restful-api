@@ -38,3 +38,19 @@ func (repository *PertanyaanKeamananRepositoryImpl) FindById(ctx context.Context
 		return nasabah, errors.New("id Not Found")
 	}
 }
+
+func (repository *PertanyaanKeamananRepositoryImpl) FindScurity(ctx context.Context, tx *sql.Tx, id_user domain.KeamananNasabah) (domain.KeamananNasabah, error) {
+	script := "select id_user, pertanyaan_keamanan, jawaban_keamanan from tb_data_nasabah where id_user = ? and pertanyaan_keamanan = ? and jawaban_keamanan = ? limit 1"
+	rows, err := tx.QueryContext(ctx, script, id_user.Id, id_user.PertanyaanKeamanan, id_user.JawabanKeamanan)
+	nasabah := domain.KeamananNasabah{}
+	helper.PanicIfError(err)
+	defer rows.Close()
+
+	if rows.Next() {
+		err := rows.Scan(&nasabah.Id, &nasabah.PertanyaanKeamanan, &nasabah.JawabanKeamanan)
+		helper.PanicIfError(err)
+		return nasabah, nil
+	} else {
+		return nasabah, errors.New("id Not Found")
+	}
+}

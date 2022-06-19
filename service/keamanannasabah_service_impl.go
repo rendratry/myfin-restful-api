@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"github.com/go-playground/validator/v10"
+	"myfin/entity/domain"
 	"myfin/entity/web"
 	"myfin/exception"
 	"myfin/helper"
@@ -44,15 +45,42 @@ func (service *KeamananNasabahServiceImpl) UpdateKeamanan(ctx context.Context, r
 	return helper.ToKeamananNasabahResponse(datanasabah)
 }
 
-func (service *KeamananNasabahServiceImpl) FindById(ctx context.Context, datanasabahId int) web.KeamananNasabahResponse {
+func (service *KeamananNasabahServiceImpl) FindById(ctx context.Context, datanasabahId web.DatanasabahUpdateKeamananRequest) web.KeamananNasabahResponse {
+	err := service.Validate.Struct(datanasabahId)
+	helper.PanicIfError(err)
+
 	tx, err := service.DB.Begin()
 	helper.PanicIfError(err)
 	defer helper.CommitOrRollback(tx)
 
-	datanasabah, err := service.KeamananNasabahRepository.FindById(ctx, tx, datanasabahId)
+	datanasabah, err := service.KeamananNasabahRepository.FindById(ctx, tx, datanasabahId.Id_user)
 	if err != nil {
 		panic(exception.NewNotFoundError(err.Error()))
 	}
+
+	datanasabah.PertanyaanKeamanan = datanasabahId.Pertanyaan_Keamanan
+	datanasabah.JawabanKeamanan = datanasabahId.Jawaban_Keamanan
+
+	return helper.ToKeamananNasabahResponse(datanasabah)
+}
+
+func (service *KeamananNasabahServiceImpl) FindScurity(ctx context.Context, datanasabahId web.DatanasabahUpdateKeamananRequest) web.KeamananNasabahResponse {
+	err := service.Validate.Struct(datanasabahId)
+	helper.PanicIfError(err)
+
+	tx, err := service.DB.Begin()
+	helper.PanicIfError(err)
+	defer helper.CommitOrRollback(tx)
+
+	keamanan := domain.KeamananNasabah{Id: datanasabahId.Id_user, PertanyaanKeamanan: datanasabahId.Pertanyaan_Keamanan, JawabanKeamanan: datanasabahId.Jawaban_Keamanan}
+
+	datanasabah, err := service.KeamananNasabahRepository.FindScurity(ctx, tx, keamanan)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
+
+	datanasabah.PertanyaanKeamanan = datanasabahId.Pertanyaan_Keamanan
+	datanasabah.JawabanKeamanan = datanasabahId.Jawaban_Keamanan
 
 	return helper.ToKeamananNasabahResponse(datanasabah)
 }

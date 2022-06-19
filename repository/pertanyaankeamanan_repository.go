@@ -9,4 +9,5 @@ import (
 type KeamananNasabahRepository interface {
 	UpdateKeamanan(ctx context.Context, tx *sql.Tx, nasabah domain.KeamananNasabah) domain.KeamananNasabah
 	FindById(ctx context.Context, tx *sql.Tx, id_user int) (domain.KeamananNasabah, error)
+	FindScurity(ctx context.Context, tx *sql.Tx, id_user domain.KeamananNasabah) (domain.KeamananNasabah, error)
 }
