@@ -41,3 +41,8 @@ type DatanasabahUpdateKeamananRequest struct {
 	Pertanyaan_Keamanan string `validate:"required" json:"pertanyaan"`
 	Jawaban_Keamanan    string `validate:"required" json:"jawaban"`
 }
+
+type TransaksiRequest struct {
+	IdNasabah int    `validate:"required"`
+	Status    string `validate:"required" json:"status"`
+}

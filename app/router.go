@@ -18,9 +18,11 @@ func NewRouter(
 	loginController controller.LoginNasabahController,
 	profileController controller.GetProfileController,
 	avaController controller.AvaUploadController,
+	transaksiController controller.TransaksiController,
 	pinnasabahController controller.PinNasabahController) *httprouter.Router {
 	router := httprouter.New()
 
+	router.GET("/api/transaksi/:nasabahId/:status", transaksiController.FindTransaksiKredit)
 	router.POST("/api/keamanancheck/:datanasabahId", keamanannasabahController.FindById)
 	router.POST("/api/nikcheck", akunnasabahController.FindByNik)
 	router.POST("/api/emailcheck", akunnasabahController.FindByEmail)

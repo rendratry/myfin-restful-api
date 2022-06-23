@@ -55,10 +55,13 @@ func InitializedServer() *http.Server {
 	avaUploadRepositoryImpl := repository.NewAvaUploadRepository()
 	avaUploadServiceImpl := service.NewAvaUploadService(avaUploadRepositoryImpl, db, validate)
 	avaUploadControllerImpl := controller.NewAvaUploadController(avaUploadServiceImpl)
+	transaksiRepositoryImpl := repository.NewTransaksiRepositoryImpl()
+	transaksiServiceImpl := service.NewTransaksiService(transaksiRepositoryImpl, db, validate)
+	transaksiControllerImpl := controller.NewTransaksiController(transaksiServiceImpl)
 	pinNasabahRepositoryImpl := repository.NewPinNasabahRepositoryImpl()
 	pinNasabahServiceImpl := service.NewPinNasabahService(pinNasabahRepositoryImpl, db, validate)
 	pinNasabahControllerImpl := controller.NewPinNasabahController(pinNasabahServiceImpl)
-	router := app.NewRouter(datanasabahControllerImpl, keamananNasabahControllerImpl, akunNasabahControllerImpl, pengajuanKreditControllerImpl, emailValidationControllerImpl, penarikanSaldoControllerImpl, getSaldoControllerImpl, getNikControllerImpl, loginNasabahControllerImpl, getProfileControllerImpl, avaUploadControllerImpl, pinNasabahControllerImpl)
+	router := app.NewRouter(datanasabahControllerImpl, keamananNasabahControllerImpl, akunNasabahControllerImpl, pengajuanKreditControllerImpl, emailValidationControllerImpl, penarikanSaldoControllerImpl, getSaldoControllerImpl, getNikControllerImpl, loginNasabahControllerImpl, getProfileControllerImpl, avaUploadControllerImpl, transaksiControllerImpl, pinNasabahControllerImpl)
 	authMiddleware := middleware.NewAuthMiddleware(router)
 	server := NewServer(authMiddleware)
 	return server
@@ -89,3 +92,5 @@ var loginSet = wire.NewSet(repository.NewLoginNasabahRepository, wire.Bind(new(r
 var profileSet = wire.NewSet(repository.NewGetProfileRepository, wire.Bind(new(repository.GetProfileRepository), new(*repository.GetProfileRepositoryImpl)), service.NewGetProfileService, wire.Bind(new(service.GetProfileService), new(*service.GetProfileServiceImpl)), controller.NewGetProfileController, wire.Bind(new(controller.GetProfileController), new(*controller.GetProfileControllerImpl)))
 
 var avaSet = wire.NewSet(repository.NewAvaUploadRepository, wire.Bind(new(repository.AvaUploadRepository), new(*repository.AvaUploadRepositoryImpl)), service.NewAvaUploadService, wire.Bind(new(service.AvaUploadService), new(*service.AvaUploadServiceImpl)), controller.NewAvaUploadController, wire.Bind(new(controller.AvaUploadController), new(*controller.AvaUploadControllerImpl)))
+
+var transaksiSet = wire.NewSet(repository.NewTransaksiRepositoryImpl, wire.Bind(new(repository.TransaksiRepository), new(*repository.TransaksiRepositoryImpl)), service.NewTransaksiService, wire.Bind(new(service.TransaksiService), new(*service.TransaksiServiceImpl)), controller.NewTransaksiController, wire.Bind(new(controller.TransaksiController), new(*controller.TransaksiControllerImpl)))

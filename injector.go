@@ -122,6 +122,15 @@ var avaSet = wire.NewSet(
 	wire.Bind(new(controller.AvaUploadController), new(*controller.AvaUploadControllerImpl)),
 )
 
+var transaksiSet = wire.NewSet(
+	repository.NewTransaksiRepositoryImpl,
+	wire.Bind(new(repository.TransaksiRepository), new(*repository.TransaksiRepositoryImpl)),
+	service.NewTransaksiService,
+	wire.Bind(new(service.TransaksiService), new(*service.TransaksiServiceImpl)),
+	controller.NewTransaksiController,
+	wire.Bind(new(controller.TransaksiController), new(*controller.TransaksiControllerImpl)),
+)
+
 func InitializedServer() *http.Server {
 	wire.Build(
 		app.GetConnection,
@@ -138,6 +147,7 @@ func InitializedServer() *http.Server {
 		penarikansaldoSet,
 		getsaldoSet,
 		getnikSet,
+		transaksiSet,
 		app.NewRouter,
 		wire.Bind(new(http.Handler), new(*httprouter.Router)),
 		middleware.NewAuthMiddleware,

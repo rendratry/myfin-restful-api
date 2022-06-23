@@ -40,6 +40,14 @@ type LoginNasabahResponse struct {
 	Status    string `json:"status"`
 }
 
+type TransaksiResponse struct {
+	IdTransaksi     int    `json:"id_transaksi"`
+	Tanggal         string `json:"tanggal"`
+	Nominal         string `json:"nominal"`
+	NominalDiterima string `json:"nominal_diterima"`
+	Status          string `json:"status"`
+}
+
 type EmailValidationResponse struct {
 	Email   string `json:"email"`
 	KodeOtp string `json:"otp"`

@@ -7,6 +7,7 @@ type PengajuanKredit struct {
 	Gaji             string
 	GajiTambahan     string
 	BesarPengajuan   int
+	BesarDiterima    string
 	TanggalPengajuan string
 	Tenor            string
 	Score            int

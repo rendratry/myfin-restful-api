@@ -110,6 +110,22 @@ func ToGetNikResponse(nik domain.Nik) web.GetNikResponse {
 	}
 }
 
+func ToTransaksiResponse(transaksi domain.TransaksiNasabah) web.TransaksiResponse {
+	//if transaksi.NominalDiterima == nil{
+	//	transaksi.NominalDiterima = string(0)
+	//}else{
+	//	transaksi.NominalDiterima = transaksi.NominalDiterima
+	//}
+	return web.TransaksiResponse{
+
+		IdTransaksi:     transaksi.IdTransaksi,
+		Tanggal:         transaksi.Tanggal,
+		Nominal:         transaksi.Nominal,
+		NominalDiterima: transaksi.NominalDiterima,
+		Status:          transaksi.Status,
+	}
+}
+
 func ToGetProfileResponse(id_user domain.DataNasabah) web.GetProfileResponse {
 	return web.GetProfileResponse{
 		Nama:   id_user.NamaLengkap,

@@ -28,7 +28,7 @@ Content-Type: application/json
 
 {
   "id" : 76,
-  "penggunaan" : "Bayar sekolah",
+  "penggunaan" : "Bayar sekolah Anak",
   "pekerjaan" : "PNS",
   "gaji" : "5000000",
   "gaji_tambahan" : "3000000",
@@ -59,13 +59,13 @@ Content-Type: application/json
 
 
 ### CREATE PENARIKAN saldo nasabah
-POST http://192.168.0.111:3000/api/penarikansaldo
+POST http://localhost:3000/api/penarikansaldo
 X-API-Key: myfin
 Accept: application/json
 Content-Type: application/json
 
 {
-  "id" : 25,
+  "id" : 76,
   "jml_penarikan" : 100000,
   "bank" : "BRI",
   "norek" : "389993876379",
@@ -179,3 +179,9 @@ Content-Type: application/json
 {
   "nik" : "3519110907000001"
 }
+
+### Get Transaksi
+GET http://localhost:3000/api/transaksi/76/pending
+X-API-Key: myfin
+Accept: application/json
+Content-Type: application/json

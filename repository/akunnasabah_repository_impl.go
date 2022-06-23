@@ -29,14 +29,14 @@ func (repository *AkunNasabahRepositoryImpl) CreateAkun(ctx context.Context, tx 
 }
 
 func (repository *AkunNasabahRepositoryImpl) FindByEmail(ctx context.Context, tx *sql.Tx, nasabah string) (domain.LoginNasabah, error) {
-	script := "select email from tb_data_nasabah where email = ? limit 1"
+	script := "select id_user, email from tb_data_nasabah where email = ? limit 1"
 	rows, err := tx.QueryContext(ctx, script, nasabah)
 	emailnasabah := domain.LoginNasabah{}
 	helper.PanicIfError(err)
 	defer rows.Close()
 
 	if rows.Next() {
-		err := rows.Scan(&emailnasabah.Email)
+		err := rows.Scan(&emailnasabah.IdNasabah, &emailnasabah.Email)
 		helper.PanicIfError(err)
 		return emailnasabah, nil
 	} else {
