@@ -123,6 +123,7 @@ func ToTransaksiResponse(transaksi domain.TransaksiNasabah) web.TransaksiRespons
 		Nominal:         transaksi.Nominal,
 		NominalDiterima: transaksi.NominalDiterima,
 		Status:          transaksi.Status,
+		Catatan:         transaksi.Catatan,
 	}
 }
 

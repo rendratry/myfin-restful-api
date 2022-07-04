@@ -8,4 +8,5 @@ type TransaksiNasabah struct {
 	Nominal         string
 	NominalDiterima string
 	Status          string
+	Catatan         string
 }

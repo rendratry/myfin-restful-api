@@ -82,5 +82,7 @@ func (service *KeamananNasabahServiceImpl) FindScurity(ctx context.Context, data
 	datanasabah.PertanyaanKeamanan = datanasabahId.Pertanyaan_Keamanan
 	datanasabah.JawabanKeamanan = datanasabahId.Jawaban_Keamanan
 
+	helper.SendEmail("Keamanan Akun", datanasabah.Email, "Anda Berusaha Memperbarui PIN, Jika bukan anda bisa balas email ini")
+
 	return helper.ToKeamananNasabahResponse(datanasabah)
 }

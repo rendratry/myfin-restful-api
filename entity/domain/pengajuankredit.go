@@ -12,4 +12,5 @@ type PengajuanKredit struct {
 	Tenor            string
 	Score            int
 	Status           string
+	Catatan          string
 }

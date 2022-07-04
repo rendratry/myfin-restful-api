@@ -30,11 +30,11 @@ func (controller *TransaksiControllerImpl) FindTransaksiKredit(writer http.Respo
 	transaksiRequest.IdNasabah = id
 	transaksiRequest.Status = status
 
-	avaResponse := controller.TransaksiService.FindTransaksiKredit(request.Context(), transaksiRequest)
+	transaksiResponse := controller.TransaksiService.FindTransaksiKredit(request.Context(), transaksiRequest)
 	webResponse := web.WebResponse{
 		Code:   200,
 		Status: "OK",
-		Data:   avaResponse,
+		Data:   transaksiResponse,
 	}
 
 	helper.WriteToResponseBody(writer, webResponse)

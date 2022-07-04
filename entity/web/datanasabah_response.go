@@ -46,6 +46,7 @@ type TransaksiResponse struct {
 	Nominal         string `json:"nominal"`
 	NominalDiterima string `json:"nominal_diterima"`
 	Status          string `json:"status"`
+	Catatan         string `json:"catatan"`
 }
 
 type EmailValidationResponse struct {

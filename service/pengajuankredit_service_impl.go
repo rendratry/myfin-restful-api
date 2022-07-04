@@ -48,6 +48,7 @@ func (service *PengajuanKreditServiceImpl) AjuanKredit(ctx context.Context, requ
 		TanggalPengajuan: date,
 		Score:            request.Score,
 		Status:           "pending",
+		Catatan:          "-",
 	}
 	pengajuankredit = service.PengajuanKreditRepository.AjuanKredit(ctx, tx, pengajuankredit)
 

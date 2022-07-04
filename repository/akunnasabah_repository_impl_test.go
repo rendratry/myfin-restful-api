@@ -2,6 +2,7 @@ package repository
 
 import (
 	_ "github.com/go-sql-driver/mysql"
+	"myfin/helper"
 	"testing"
 )
 
@@ -18,4 +19,8 @@ func TestAkunNasabahInsert(t *testing.T) {
 	//	panic(err)
 	//}
 	//fmt.Println(result)
+}
+
+func TestSendEmail(t *testing.T) {
+	helper.SendEmail("mencoba", "rendratrykusuma@gmail.com", "hai")
 }

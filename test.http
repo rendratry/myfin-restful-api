@@ -27,8 +27,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "id" : 76,
-  "penggunaan" : "Bayar sekolah Anak",
+  "id" : 97,
+  "penggunaan" : "Membeli Es Podeng",
   "pekerjaan" : "PNS",
   "gaji" : "5000000",
   "gaji_tambahan" : "3000000",
@@ -181,7 +181,7 @@ Content-Type: application/json
 }
 
 ### Get Transaksi
-GET http://localhost:3000/api/transaksi/76/pending
+GET http://localhost:3000/api/transaksi/82/catatan
 X-API-Key: myfin
 Accept: application/json
 Content-Type: application/json
